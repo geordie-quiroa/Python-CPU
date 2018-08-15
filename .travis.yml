@@ -4,4 +4,4 @@ python:
   - "3.6"  
 # command to run tests
 script:
-  - python test_cpu.py
+  - python test_cpu.py -v
