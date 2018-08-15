@@ -1,6 +1,8 @@
 language: python
-  python:
-    - "3.6"
-    - "3.7"
-  script:
-    - python cpu.py
+python:  
+  - "3.5"
+  - "3.6"  
+  - "3.7"  # 3.7 development branch
+# command to run tests
+script:
+  - python cpu.py
