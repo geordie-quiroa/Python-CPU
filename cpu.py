@@ -1,2 +1,2 @@
-msg = "Hello World"
-print(msg)
+person = input('Enter your name: ')
+print('Hello', person)
