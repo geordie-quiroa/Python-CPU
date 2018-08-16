@@ -4,7 +4,28 @@ class IntegratedCircuit():
         file = open(file, "r")
         return(file.read())
 
-    def InstructionParser(self, machineCode):
+    def InstructionsSeparator(self, fileData):
+        byte = 0
+        opCode = ""
+        data = ""
+        instructions = []
+        print(fileData)
+        for char in fileData:            
+            if byte < 4:
+                opCode += char
+            elif byte >= 4:
+                data += char
+            if byte == 7:
+                print([opCode, data])
+                instructions.append([opCode, data])
+                opCode = ""
+                data = ""    
+            byte += 1
+        return instructions
+
+
+
+    def InstructionParser(self, instCode):
         # Python Dictionary
         ## Si "machineCode" es alguno de los elementos de la derecha entonces retornar el elemento de la izquierda.
         ## Es similar a un switch de otros lenguajes.
@@ -25,7 +46,7 @@ class IntegratedCircuit():
             '1101': 'ROR?',
             '1110': 'ROL?',
             '1111': 'HLT'
-        }.get(machineCode, machineCode)
+        }.get(instCode, instCode)
 
 
 if __name__ == '__main__': 
@@ -33,4 +54,4 @@ if __name__ == '__main__':
     ic = IntegratedCircuit()
 
     print(ic.InstructionParser(input("Code: ")))
-    print(ic.FileReader("data.code"))
+    ic.InstructionsSeparator(ic.FileReader("data.code"))
