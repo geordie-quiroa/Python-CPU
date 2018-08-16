@@ -11,10 +11,16 @@ class TestCPU(unittest.TestCase):
         #La variable result tiene la respuesta de la funcion Parser de Control Unit.
         #La idea de esta prueba es comprobar que parser está respondiendo los valores esperados.
         for inst in instructions:
-            result = controlUnit.InstructionParser(inst[0])
+            ic = controlUnit.IntegratedCircuit()
+            result = ic.InstructionParser(inst[0])
             self.assertEqual(result, inst[1])
+
+    def test_reader(self):
+        ic = controlUnit.IntegratedCircuit()
+        result = ic.FileReader("test.code")
+        self.assertEqual(result, "00001111")
+        
 
 if __name__ == '__main__':
     #Si test_cpu.py está corriendo como dependencia entonces no correr las siguientes lineas:
-
     unittest.main()
