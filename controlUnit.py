@@ -21,7 +21,6 @@ class IntegratedCircuit():
                 data = ""
                 byte = -1
             byte += 1
-        print(instructions)
         return instructions
 
 

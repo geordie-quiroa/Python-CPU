@@ -19,6 +19,11 @@ class TestCPU(unittest.TestCase):
         ic = controlUnit.IntegratedCircuit()
         result = ic.FileReader("test.code")
         self.assertEqual(result, "00001111")
+
+    def test_separator(self):
+        ic = controlUnit.IntegratedCircuit()
+        result = ic.InstructionsSeparator("00001111")
+        self.assertEqual(result, [[0,15]])
         
 
 if __name__ == '__main__':
