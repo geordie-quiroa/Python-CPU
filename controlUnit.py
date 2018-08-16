@@ -1,4 +1,4 @@
-class IntegratedCircuit():
+class ControlUnit():
     ## Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
     def FileReader(self, file):
         file = open(file, "r")
@@ -10,13 +10,14 @@ class IntegratedCircuit():
         data = ""
         instructions = []
         fileData = fileData.replace("\n", "")
+        fileData = fileData.replace(" ", "")
         for char in fileData:            
             if byte < 4:
                 opCode += char
             elif byte >= 4:
                 data += char
             if byte == 7:
-                instructions.append([int(opCode, 2), int(data, 2)])
+                instructions.append([opCode, data])
                 opCode = ""
                 data = ""
                 byte = -1
@@ -24,34 +25,17 @@ class IntegratedCircuit():
         return instructions
 
 
+    def InstructionFetcher(self, instructionRegister, programCounter):
+        return instructionRegister[int(programCounter, 2)]     
 
-    def InstructionParser(self, instCode):
-        # Python Dictionary
-        ## Si "machineCode" es alguno de los elementos de la derecha entonces retornar el elemento de la izquierda.
-        ## Es similar a un switch de otros lenguajes.
-        return{
-            '0000': 'OUTPUT',
-            '0001': 'LD_A',
-            '0010': 'LD_B',
-            '0011': 'AND',
-            '0100': 'ILD_A',
-            '0101': 'STR_A',
-            '0110': 'STR_B',
-            '0111': 'OR',
-            '1000': 'ILD_B',
-            '1001': 'ADD',
-            '1010': 'SUB',
-            '1011': 'JMP',
-            '1100': 'JMP_N',
-            '1101': 'ROR?',
-            '1110': 'ROL?',
-            '1111': 'HLT'
-        }.get(instCode, instCode)
+    def add(self, a, b):
+        input("asdf")
+        return(a+b)        
 
 
 if __name__ == '__main__': 
     ## Si controlUnit.py está corriendo como dependencia, entonces no correr las siguientes lineas:    
-    ic = IntegratedCircuit()
+    cu = ControlUnit()
 
-    #print(ic.InstructionParser(input("Code: ")))
-    ic.InstructionsSeparator(ic.FileReader("data.code"))
+    print(cu.add(input("NUMERO 1"), input("NUMERO 2")))
+    print(cu.InstructionsSeparator(cu.FileReader("data.code")))
