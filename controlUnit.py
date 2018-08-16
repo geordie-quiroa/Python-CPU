@@ -26,16 +26,10 @@ class ControlUnit():
 
 
     def InstructionFetcher(self, instructionRegister, programCounter):
-        return instructionRegister[int(programCounter, 2)]     
-
-    def add(self, a, b):
-        input("asdf")
-        return(a+b)        
+        return instructionRegister[int(programCounter, 2)]
 
 
 if __name__ == '__main__': 
     ## Si controlUnit.py está corriendo como dependencia, entonces no correr las siguientes lineas:    
     cu = ControlUnit()
-
-    print(cu.add(input("NUMERO 1"), input("NUMERO 2")))
     print(cu.InstructionsSeparator(cu.FileReader("data.code")))

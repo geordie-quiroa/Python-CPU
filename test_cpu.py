@@ -18,11 +18,6 @@ class TestCPU(unittest.TestCase):
         cu = controlUnit.ControlUnit()
         result = cu.InstructionFetcher([["0000","1111"], ["1111", "0000"]], "0001")
         self.assertEqual(result, ["1111", "0000"])
-
-    def test_add(self):
-        cu = controlUnit.ControlUnit()
-        result = cu.add("b", "c")
-        self.assertEqual(result, "asd")
         
 
 if __name__ == '__main__':
