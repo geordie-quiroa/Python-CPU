@@ -9,18 +9,19 @@ class IntegratedCircuit():
         opCode = ""
         data = ""
         instructions = []
-        print(fileData)
+        fileData = fileData.replace("\n", "")
         for char in fileData:            
             if byte < 4:
                 opCode += char
             elif byte >= 4:
                 data += char
             if byte == 7:
-                print([opCode, data])
-                instructions.append([opCode, data])
+                instructions.append([int(opCode, 2), int(data, 2)])
                 opCode = ""
-                data = ""    
+                data = ""
+                byte = -1
             byte += 1
+        print(instructions)
         return instructions
 
 
@@ -53,5 +54,5 @@ if __name__ == '__main__':
     ## Si controlUnit.py está corriendo como dependencia, entonces no correr las siguientes lineas:    
     ic = IntegratedCircuit()
 
-    print(ic.InstructionParser(input("Code: ")))
+    #print(ic.InstructionParser(input("Code: ")))
     ic.InstructionsSeparator(ic.FileReader("data.code"))
