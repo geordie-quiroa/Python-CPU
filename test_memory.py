@@ -1,5 +1,6 @@
 import controlUnit
 import unittest
+import read2ram
 
 ##Clase de pruebas automatizadas
 class TestCPU(unittest.TestCase):    
@@ -18,7 +19,7 @@ class TestCPU(unittest.TestCase):
         cu = controlUnit.ControlUnit()
         result = cu.InstructionFetcher([["0000","1111"], ["1111", "0000"]], "0001")
         self.assertEqual(result, ["1111", "0000"])
-        
+
 
 if __name__ == '__main__':
     #Si test_cpu.py está corriendo como dependencia entonces no correr las siguientes lineas:
