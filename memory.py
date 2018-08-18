@@ -4,12 +4,12 @@ class memory:
         _memory_address = []
         _readMe = open("test.code", 'r').read()
         #print(_readMe)
-        _splitMe = _readMe.split('\n')  # crea un array para cada linea del .code
+        _parseData = _readMe.split('\n')  # crea un array para cada linea del .code
         #print(_splitMe)
-        n = len(_splitMe)
+        n = len(_parseData)
         def __init__(self):
-                self.instructions = _splitMe
-        for byte in _splitMe:
+                self.instructions = memory.data._parseData
+        for byte in _parseData:
             #print(byte[4:8])
             _opcodes.append(byte[0:4])
             _memory_address.append(byte[4:10])
