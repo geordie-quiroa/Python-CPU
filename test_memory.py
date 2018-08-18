@@ -1,6 +1,6 @@
 import controlUnit
 import unittest
-import read2ram
+import memory
 
 ##Clase de pruebas automatizadas
 class TestCPU(unittest.TestCase):    
