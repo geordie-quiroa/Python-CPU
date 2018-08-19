@@ -66,7 +66,7 @@ if __name__ == '__main__':  #ejemplos de como funciona cada clase al momento de 
     direccionRam = memory.addressBus.ramDir(MAR)
     dataEnEsaDir = ram.dataAtAddress(direccionRam)
     print("Buscar en RAM la direccion %i" % direccionRam)
-    regA = memory.registers(dataEnEsaDir)
+    regA = memory.registers(dataEnEsaDir) #cree el objeto> registro A (regA) para poder asignarle los valores que va a utilizar el CU
     regC = memory.registers(direccionRam)
     regB = memory.registers()
     print("Valor del Registro A  %i" %regA.storedValue)
