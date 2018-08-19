@@ -2,13 +2,13 @@ class memory:
     class data:
         _readMe = open("test.code", 'r').read()  #utilizo el gion bajo como una convencion de desarrollo POO en python para definir metodos y variables privadas para una clase.
         _predata = _readMe.split('\n')  # asigna a cada linea del archivo, una posicion en el arreglo privado _data
-        _data = []
+        _data = [] #en este arrreglo voy a tener lo de _predata como integers
         for byte in _predata:
             byte = int(byte)
             _data.append(byte)
         n = len(_data)
         def __init__(self):
-                self.instructions = memory.data._data #crea el atributo de instrucciones al objeto data para luego cargarlo a ram
+                self.instructions = memory.data._data #crea el atributo de instrucciones al objeto data para luego cargar las instrucciones a ram
 
     class ram(data): #inherita clase data
         def __init__(self):
