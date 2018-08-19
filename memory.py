@@ -18,6 +18,8 @@ class memory:
             for address in range (0,self.totalData,1):
                 _addresses.append(address)
             self.addresses = _addresses
+        def dataAtAddress(self, ramDir):
+            return self.data[ramDir]
     #Memory Address Registry --> MAR
     class MAR: #MAR recibe el PC del CU para ir a buscar esa data al address en ram que envio el PC, tambien almacena la siguiente linea a ejecutar para que lo use el CU
         def __init__(self, PC=0): #en PC pasas el atributo que tiene el PC de tu CU, PC.Counter o algo asi
@@ -26,27 +28,27 @@ class memory:
     class addressBus(MAR): #inherita MAR, con el fin de retornar solo la direccion de ram para esa instruccion 
         def ramDir(self): #va a retornar la direccion de memoria (que contiene la data) que solcito el PC. Este valor lo va a usar la funcion de ram que devuelve la data en esa dirRam al CU
             self.dir = self.instruction2exec #utiliza el atributo (.instruction2exec) de MAR para retornar solo la dir de memoria de la data para ejecutar la instruccion del PC
-            return self.dir
+            return self.dir  #da el parametro para usar como indice en el arreglo de ram
     
     class registers:
-        inUse = 0
+        inUse = 0 #cuando se consulta dice cuantos registros tienen un valor distinto a cero; estan en uso
         def __init__(self, n=0):
             if n == 0:
-                self.storedValue = n
+                self.storedValue = n # el valor en el registro es cero
             else:
-                self.storedValue = n
-                memory.registers.inUse += 1
+                self.storedValue = n  # asigna el valor contenido al objeto del registro
+                memory.registers.inUse += 1 # cambia el contador que esta al inicio de la clases para saber que hay un registro mas en uso
         def clearRegistry(self):
-            self.storedValue = 0
+            self.storedValue = 0 #cuando el CU termine de usar ese registro, utilizar este metodo
             memory.registers.inUse -= 1
 
-        def withValue(self):
+        def withValue(self): # va a retornar si un registro en especifico tiene un valor almacenado.
             if self.storedValue >0:
                 return 1
             else:
                 return 0
 
-if __name__ == '__main__':
+if __name__ == '__main__':  #ejemplos de como funciona cada clase al momento de crear los objetos.
 
     instrucciones = memory.data()
     print(instrucciones.instructions)
@@ -62,8 +64,9 @@ if __name__ == '__main__':
     print(MAR.instruction2exec)
     #addressBus = memory.addressBus
     direccionRam = memory.addressBus.ramDir(MAR)
+    dataEnEsaDir = ram.dataAtAddress(direccionRam)
     print("Buscar en RAM la direccion %i" % direccionRam)
-    regA = memory.registers(direccionRam)
+    regA = memory.registers(dataEnEsaDir)
     regC = memory.registers(direccionRam)
     regB = memory.registers()
     print("Valor del Registro A  %i" %regA.storedValue)
