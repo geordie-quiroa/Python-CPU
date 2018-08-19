@@ -1,28 +1,28 @@
 class ControlUnit():
     ## Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
     def FileReader(self, file):
-        file = open(file, "r")
+        _file = open(file, "r")
         return(file.read())
 
     def InstructionsSeparator(self, fileData):
-        byte = 0
-        opCode = ""
-        data = ""
-        instructions = []
+        _byte = 0
+        _opCode = ""
+        _data = ""
+        _instructions = []
         fileData = fileData.replace("\n", "")
         fileData = fileData.replace(" ", "")
         for char in fileData:            
-            if byte < 4:
-                opCode += char
-            elif byte >= 4:
-                data += char
-            if byte == 7:
-                instructions.append([opCode, data])
-                opCode = ""
-                data = ""
+            if _byte < 4:
+                _opCode += char
+            elif _byte >= 4:
+                _data += char
+            if _byte == 7:
+                _instructions.append([_opCode, _data])
+                _opCode = ""
+                _data = ""
                 byte = -1
             byte += 1
-        return instructions
+        return _instructions
 
 
     def InstructionFetcher(self, instructionRegister, programCounter):
