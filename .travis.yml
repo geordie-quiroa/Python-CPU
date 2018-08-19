@@ -4,4 +4,4 @@ python:
 # command to run tests
 script:
   #- python test_cpu.py -v
-  - python test_memory.py -v
+  - python test.py -v
