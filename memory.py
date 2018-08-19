@@ -54,8 +54,8 @@ if __name__ == '__main__':  #ejemplos de como funciona cada clase al momento de 
     print(instrucciones.instructions)
     ram = memory.ram()
     
-    for n in range (0, memory.data.n, 1):
-        print(ram.addresses[n], ram.data[n], ram.totalData, ram._data, ram.addresses)
+    for n in range (0, memory.data.n, 1): # solo muestra lo que contiene cada posicion en el arreglo.
+        print(ram.addresses[n], ram.data[n], ram.totalData, ram.data, ram.addresses)
     
     for i in range(0, ram.totalData, 1):
         MAR = memory.MAR(i) # i es el program counter PC
