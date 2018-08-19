@@ -1,7 +1,6 @@
 language: python
 python:
   - "3.6"  
-# command to run tests
-script:
-  #- python test_cpu.py -v
+# comandos parar correr pruebas automaticas
+script:  
   - python test.py -v
