@@ -50,9 +50,9 @@ class memory:
 
 if __name__ == '__main__':  #ejemplos de como funciona cada clase al momento de crear los objetos.
 
-    instrucciones = memory.data()
+    instrucciones = memory.data()  #instrucciones es ahora el objeto creado que tiene los atributos definidos en la clase data; que son las instrucciones ya en integers
     print(instrucciones.instructions)
-    ram = memory.ram()
+    ram = memory.ram() #cree el objeto ram para poder utilizar sus atributos definidos
     
     for n in range (0, memory.data.n, 1): # solo muestra lo que contiene cada posicion en el arreglo.
         print(ram.addresses[n], ram.data[n], ram.totalData, ram.data, ram.addresses)
