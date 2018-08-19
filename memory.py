@@ -1,6 +1,6 @@
 class memory:
     class data:
-        _readMe = open("test.code", 'r').read()
+        _readMe = open("test.code", 'r').read()  #utilizo el gion bajo como una convencion de desarrollo POO en python para definir metodos y variables privadas.
         _predata = _readMe.split('\n')  # asigna a cada linea del archivo, una posicion en el arreglo privado _data
         _data = []
         for byte in _predata:
