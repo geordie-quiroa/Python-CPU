@@ -23,9 +23,16 @@ class ControlUnit:
             self.value += 1
             
     class currentInstructionRegister:
-        def __init__(self, instructionAtPC):
+        def __init__(self, instructionAtPC): #tiene que recibir el string del programa.code at PC. Sin procesar ni nada, porque adentro lo procesa.
             self.current = instructionAtPC
-
+            _index = instructionAtPC.find(' ')
+            _instructionLength = len(instructionAtPC)
+            if _index >0:
+                self.opcode = instructionAtPC[0:_index]
+                self.addressInfo = instructionAtPC[_index:_instructionLength]
+            else:
+                self.opcode = instructionAtPC # ver cual es la direccion de halt aqui va a ir
+                self.addressInfo = instructionAtPC #ver cual es la direccion de HALT, aqui va a ir
 
     def FileReader(self, file):
         _file = open(file, "r")
