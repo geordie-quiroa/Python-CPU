@@ -1,6 +1,6 @@
 #parseo el archivo
 class data:
-    _readMe = open("data.code", 'r').read()
+    _readMe = open("RAM.code", 'r').read()
     _predata = _readMe.split('\n')  # crea un array
     _data = []  # cambie _parseData por _data
     for byte in _predata:
