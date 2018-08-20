@@ -1,7 +1,7 @@
 class ControlUnit():
     ## Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
     def FileReader(self, file):
-        _file = open(file, "r")
+        file = open(file, "r")
         return(file.read())
 
     def InstructionsSeparator(self, fileData):
@@ -20,8 +20,8 @@ class ControlUnit():
                 _instructions.append([_opCode, _data])
                 _opCode = ""
                 _data = ""
-                byte = -1
-            byte += 1
+                _byte = -1
+            _byte += 1
         return _instructions
 
 
