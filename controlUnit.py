@@ -1,15 +1,30 @@
 class ControlUnit:
-    ## Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
+    class programa:
+        # Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
+        _readMe = open("program.code", 'r').read()
+        _readProgram = _readMe.split('\n')  # crea un array
+        _programInstructions = [] # cambie _parseData por _data
+        for instruction in _readProgram:
+            byte = instruction.upper()
+            #byte = prebyte.replace(' ', '')
+            _programInstructions.append(byte)
+        n = len(_programInstructions)
+
+        def __init__(self):
+            self.instrucciones = self._programInstructions
 
     class programCounter:
         _value = 0
 
         def __init__(self):
-            self.value = ControlUnit.programCounter._value
+            self.value = self._value
 
         def update(self):
             self.value += 1
-
+            
+    class currentInstructionRegister:
+        def __init__(self, instructionAtPC):
+            self.current = instructionAtPC
 
 
     def FileReader(self, file):
@@ -100,7 +115,6 @@ class ControlUnit:
 
     def halt(self):
         exit()
-
 
 
 if __name__ == '__main__': 
