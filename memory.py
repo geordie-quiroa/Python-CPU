@@ -18,7 +18,7 @@ class memory:
             for address in range (0,self.totalData,1):
                 _addresses.append(address)
             self.addresses = _addresses
-        def dataAtAddress(self, ramDir):
+        def dataBus(self, ramDir):
             return self.data[ramDir]
     #Memory Address Registry --> MAR
     class MAR: #MAR recibe el PC del CU para ir a buscar esa data al address en ram que envio el PC, tambien almacena la siguiente linea a ejecutar para que lo use el CU
@@ -64,7 +64,7 @@ if __name__ == '__main__':  #ejemplos de como funciona cada clase al momento de 
     print(MAR.instruction2exec)
     #addressBus = memory.addressBus
     direccionRam = memory.addressBus.ramDir(MAR)
-    dataEnEsaDir = ram.dataAtAddress(direccionRam)
+    dataEnEsaDir = ram.dataBus(direccionRam)
     print("Buscar en RAM la direccion %i" % direccionRam)
     regA = memory.registers(dataEnEsaDir) #cree el objeto> registro A (regA) para poder asignarle los valores que va a utilizar el CU
     regC = memory.registers(direccionRam)
