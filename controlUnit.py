@@ -1,5 +1,17 @@
-class ControlUnit():
+class ControlUnit:
     ## Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
+
+    class programCounter:
+        _value = 0
+
+        def __init__(self):
+            self.value = ControlUnit.programCounter._value
+
+        def update(self):
+            self.value += 1
+
+
+
     def FileReader(self, file):
         _file = open(file, "r")
         return(file.read())
@@ -25,8 +37,8 @@ class ControlUnit():
         return _instructions
 
 
-    def InstructionFetcher(self, instructionRegister, programCounter):
-        return instructionRegister[int(programCounter, 2)]
+    #def InstructionFetcher(self, instructionRegister, programCounter):
+        #return instructionRegister[int(programCounter, 2)]
 
     def InstructionDecoder(self, opcode, data):
         opcode = int(opcode, 2)
