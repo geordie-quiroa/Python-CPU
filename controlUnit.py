@@ -1,4 +1,4 @@
-class ControlUnit:
+class CU:
     class programa:
         # Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
         _readMe = open("program.code", 'r').read()
@@ -33,34 +33,6 @@ class ControlUnit:
             else:
                 self.opcode = instructionAtPC # ver cual es la direccion de halt aqui va a ir
                 self.addressInfo = instructionAtPC #ver cual es la direccion de HALT, aqui va a ir
-
-    def FileReader(self, file):
-        _file = open(file, "r")
-        return(file.read())
-
-    def InstructionsSeparator(self, fileData):
-        _byte = 0
-        _opCode = ""
-        _data = ""
-        _instructions = []
-        fileData = fileData.replace("\n", "")
-        fileData = fileData.replace(" ", "")
-        for char in fileData:            
-            if _byte < 4:
-                _opCode += char
-            elif _byte >= 4:
-                _data += char
-            if _byte == 7:
-                _instructions.append([_opCode, _data])
-                _opCode = ""
-                _data = ""
-                byte = -1
-            byte += 1
-        return _instructions
-
-
-    def InstructionFetcher(self, instructionRegister, programCounter):
-        return instructionRegister[int(programCounter, 2)]
 
     def InstructionDecoder(self, opcode, data):
         opcode = int(opcode, 2)
@@ -125,6 +97,16 @@ class ControlUnit:
 
 
 if __name__ == '__main__': 
-    ## Si controlUnit.py está corriendo como dependencia, entonces no correr las siguientes lineas:    
-    cu = ControlUnit()
-    print(cu.InstructionsSeparator(cu.FileReader("data.code")))
+    PC = CU.programCounter()
+    programa = CU.programa()
+    ProgInstrucciones = programa.instrucciones
+    for i in range(0, programa.n-1,1):
+        print(PC.value)
+        CIR = CU.currentInstructionRegister(ProgInstrucciones[PC.value])
+        print(CIR.current, "opcode> %s" %CIR.opcode, "address Info> %s" %CIR.addressInfo)
+        PC.update()
+        #print(programa.programInstructions[i])
+    i = 2
+    index = ProgInstrucciones[i].find(' ')
+    print(ProgInstrucciones[i][0:index])
+    print(ProgInstrucciones)
