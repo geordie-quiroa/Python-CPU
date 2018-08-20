@@ -37,8 +37,8 @@ class ControlUnit:
         return _instructions
 
 
-    #def InstructionFetcher(self, instructionRegister, programCounter):
-        #return instructionRegister[int(programCounter, 2)]
+    def InstructionFetcher(self, instructionRegister, programCounter):
+        return instructionRegister[int(programCounter, 2)]
 
     def InstructionDecoder(self, opcode, data):
         opcode = int(opcode, 2)
