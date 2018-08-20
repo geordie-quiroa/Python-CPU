@@ -1,3 +1,4 @@
+# YA NO USAR ESTE ARCHIVO, modularice este archivo en otros archivos para cumplir con un requisito de la fase 2
 class memory:
     class data:
         _readMe = open("test.code", 'r').read()  #utilizo el gion bajo como una convencion de desarrollo POO en python para definir metodos y variables privadas para una clase.
