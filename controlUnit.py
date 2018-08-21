@@ -62,7 +62,7 @@ class CU:
                     return ('Funciono STR_C')
                     ## DO STR_B
                 elif opcode == 'ADD' or opcode == '1001':
-                    return ('Funcionon ADD')
+                    return ('Funciono ADD')
                     ## DO ILD_B
                 elif opcode == 'SUB' or opcode == '1010':
                     return ('Funciono SUB')
