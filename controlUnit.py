@@ -162,7 +162,7 @@ if __name__ == '__main__':
         programa = CU.programa()
         progInstructions = programa.instrucciones
         for i in range (0, programa.n-1, 1):
-            print(progInstructions)
+            print(progInstructions[i])
             print(PC.value)
             CIR = CU.currentInstructionRegister(progInstructions[PC.value])
             print(CIR.current)
