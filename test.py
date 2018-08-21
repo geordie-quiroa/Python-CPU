@@ -22,22 +22,15 @@ class TestCPU(unittest.TestCase):
         # Si no me da ese _resultado entonces me tiene que tirar un error y decirme _cual fue
         ### el _resultado real.
         self.assertEqual(_result, [["0000","1111"], ["1111", "0000"]])
-    
-    def test_fetcher(self):
-        _cu = controlUnit.ControlUnit()
-        # La variable /_result/ va a retornar el item en la posicion 1 (que esta dada en binario)
-        _result = _cu.InstructionFetcher([["0000","1111"], ["1111", "0000"]], "0001") 
-        # Yo espero que el _resultado sea '["1111", "0000"]'
-        # Si no me da ese _resultado entonces me tiene que tirar un error y decirme _cual fue
-        ### el _resultado real.       
-        self.assertEqual(_result, ["1111", "0000"])
 
 ##Clase de pruebas automatizadas de la memoria
 class TestMemory(unittest.TestCase):
 
     def test_data_load(self):
         _m = memory.memory()
-        _m.data()
+        _result = _m.data().instructions
+        self.assertEqual(_result, ['00001111','11110000','10100000','11100111'])   
+
 
 if __name__ == '__main__':
     #Si test.py está corriendo como dependencia entonces no correr las siguientes lineas:

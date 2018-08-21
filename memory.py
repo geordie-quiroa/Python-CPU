@@ -1,11 +1,13 @@
 # YA NO USAR ESTE ARCHIVO, modularice este archivo en otros archivos para cumplir con un requisito de la fase 2
 class memory:
     class data:
-        _readMe = open("test.code", 'r').read()  #utilizo el gion bajo como una convencion de desarrollo POO en python para definir metodos y variables privadas para una clase.
+        filename = "data.code"
+        _readMe = open(filename, 'r').read()  #utilizo el gion bajo como una convencion de desarrollo POO en python para definir metodos y variables privadas para una clase.
         _predata = _readMe.split('\n')  # asigna a cada linea del archivo, una posicion en el arreglo privado _data
         _data = [] #en este arrreglo voy a tener lo de _predata como integers
         for byte in _predata:
-            byte = int(byte)
+            # La comenté porque cuando convertis el byte a int el 0 se desaparece de cada item.
+            # byte = int(byte)
             _data.append(byte)
         n = len(_data)
         def __init__(self):
