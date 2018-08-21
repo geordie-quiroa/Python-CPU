@@ -31,7 +31,8 @@ class TestMemory(unittest.TestCase):
         _result = _m.data().instructions
         self.assertEqual(_result, ['00001111','11110000','10100000','11100111'])
     
-    
+    def test_ram(self):
+        #por el momento nada    
 
 
 if __name__ == '__main__':
