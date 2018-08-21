@@ -38,49 +38,49 @@ class CU:
             #_data2evaluate.evaluate(self.opcode)
             opcode = self.opcode
             if opcode == 'OUTPUT' or opcode == '0000':
-                return(opcode + '1')
+                return('Fuciono output')
             if opcode == 'LD_A' or opcode == '0001':
-                return(opcode)
+                return('Funciono LD_A')
                 ## DO OUTPUT
             elif opcode == 'LD_B' or opcode == '0010':
-                print(opcode)
+                return('Funciono LD_B')
                 ## DO LD_A
             elif opcode == 'AND' or opcode == '0011':
-                print(opcode)
+                return ('Funciono AND')
                 ## DO LD_B
             elif opcode == 'ILD_A' or opcode == '0100':
-                print(opcode)
+                return ('Funciono ILD_A')
                 ## DO AND
             elif opcode == 'ILD_B' or opcode == '0010':
-                print(opcode)
+                return ('Funciono ILD_B')
             elif opcode == 'STR_A' or opcode == '0101':
-                print(opcode)
+                return ('Funciono STR_A')
                 ## DO ILD_A
             elif opcode == 'STR_B' or opcode == '0110':
-                print(opcode)
+                return ('Funciono STR_B')
                 ## DO STR_A
             elif opcode == 'STR_C' or opcode == '0111':
-                print(opcode)
+                return ('Funciono STR_C')
                 ## DO STR_B
             elif opcode == 'ADD' or opcode == '1001':
-                print(opcode)
+                return ('Funcionon ADD')
                 ## DO ILD_B
             elif opcode == 'SUB' or opcode == '1010':
-                print(opcode)
+                return ('Funciono SUB')
                 ## DO ADD
             elif opcode == 'JMP' or opcode == '1011':
-                print(opcode)
+                return ('Funciono JMP')
                 ## DO SUB
             elif opcode == 'JMP_N' or opcode == '1100':
-                print(opcode)
+                return ('Funciono JMP_N')
                 ## DO SUB
             elif opcode == 'ROR?' or opcode == '1101':
                 ## DO JMP
-                print("TEST")
+                return ("Funciono ROR?")
             elif opcode == 'ROL?' or opcode == '1110':
-                print(opcode)
+                return ('Funciono ROL?')
             elif opcode == 'HLT' or opcode == '1111':
-                print(opcode)
+                return ('Funciono HALT')
     
     class InstructionRegister:
         def evaluate(self, opcodeSent):
@@ -158,4 +158,14 @@ if __name__ == '__main__':
         print(CIR.decode())
 
     def prueba2():
-        pass
+        PC = CU.programCounter()
+        programa = CU.programa()
+        progInstructions = programa.instrucciones
+        for i in range (0, programa.n-1, 1):
+            print(progInstructions)
+            print(PC.value)
+            CIR = CU.currentInstructionRegister(progInstructions[PC.value])
+            print(CIR.current)
+            print(CIR.decode())
+            PC.update()
+    prueba2()
