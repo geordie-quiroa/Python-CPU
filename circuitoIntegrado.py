@@ -24,8 +24,8 @@ def fetching():
 
 def decoding():
     print('---- Decoding -------')
-    print(CIR.opcode)
-    print(CIR.decode())
+    print("Opcode> %s"%CIR.opcode)
+    print("Instruccion con ese opcode> %s"%CIR.decode())
 
 def execution():
     print('--- Execution ----')
