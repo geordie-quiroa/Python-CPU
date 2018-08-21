@@ -5,7 +5,8 @@ class memory:
         _predata = _readMe.split('\n')  # asigna a cada linea del archivo, una posicion en el arreglo privado _data
         _data = [] #en este arrreglo voy a tener lo de _predata como integers
         for byte in _predata:
-            byte = int(byte)
+            # La comenté porque cuando convertis el byte a int el 0 se desaparece de cada item.
+            # byte = int(byte)
             _data.append(byte)
         n = len(_data)
         def __init__(self):
