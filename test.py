@@ -29,7 +29,9 @@ class TestMemory(unittest.TestCase):
     def test_data_load(self):
         _m = memory.memory()
         _result = _m.data().instructions
-        self.assertEqual(_result, ['00001111','11110000','10100000','11100111'])   
+        self.assertEqual(_result, ['00001111','11110000','10100000','11100111'])
+    
+    
 
 
 if __name__ == '__main__':

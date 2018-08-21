@@ -8,7 +8,7 @@ class memory:
             # La comenté porque cuando convertis el byte a int el 0 se desaparece de cada item.
             # byte = int(byte)
             _data.append(byte)
-        n = len(_data)
+        n = len(_data) # ¿Qué haces con n? Ya no la volves a usar?        
         def __init__(self):
                 self.instructions = memory.data._data #crea el atributo de instrucciones al objeto data para luego cargar las instrucciones a ram
 
