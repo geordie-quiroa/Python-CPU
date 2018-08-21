@@ -23,7 +23,7 @@ python  <nombre del archivo>.py
 
 ## Authors
 * **Fabrizzio Rivera** - [fabrv](https://github.com/fabrv)
-* **Geordi Quiroa** - [geordie-quiroa](https://github.com/geordie-quiroa)
+* **Geordie Quiroa** - [geordie-quiroa](https://github.com/geordie-quiroa)
 
 ## Licencia
 Este proyecto está bajo la **GNU GENERAL PUBLIC LICENSE** - ver [LICENSE](https://github.com/fabrv/Python-CPU/blob/master/LICENSE) for details.

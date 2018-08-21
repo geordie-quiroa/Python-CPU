@@ -1,3 +1,4 @@
+# YA NO USAR ESTE ARCHIVO, modularice este archivo en otros archivos para cumplir con un requisito de la fase 2
 class memory:
     class data:
         filename = "data.code"
