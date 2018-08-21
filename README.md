@@ -25,5 +25,5 @@ python  <nombre del archivo>.py
 * **Fabrizzio Rivera** - [fabrv](https://github.com/fabrv)
 * **Geordie Quiroa** - [geordie-quiroa](https://github.com/geordie-quiroa)
 
-## License
-This project is under the **GNU GENERAL PUBLIC LICENSE** - see [LICENSE](https://github.com/fabrv/Python-CPU/blob/master/LICENSE) for details.
+## Licencia
+Este proyecto está bajo la **GNU GENERAL PUBLIC LICENSE** - ver [LICENSE](https://github.com/fabrv/Python-CPU/blob/master/LICENSE) for details.
