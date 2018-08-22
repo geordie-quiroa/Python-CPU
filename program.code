@@ -1,11 +1,7 @@
-0101 1111
-Output 15
-Ld_A 14 B
-Ld_B 12
-1001 1110
-AND
-ILD_A
-STR_A
-STR_B
-0000
-Ld_a
+ld_a 5
+0010 0101
+ild_a 0101
+ild_B 8
+Str_A 2
+Str_B 10
+1111

@@ -14,22 +14,9 @@ A = registers() #cree el registro A
 B = registers()
 C = registers()
 D = registers()
-
+do = CU.Interruptions() 
 def fetching():
     print('-----Fetching--------')
-    #if len(CIR.FourBitsAddressInfo) == 4: #quiere decir que el addressCode esta en binario, lo voy a convertir a hex para cargar la dir al addressBus
-    #    _address2convert= CIR.FourBitsAddressInfo
-    #    MAR.addressBus = CIR.convertBinary2DecAddress(_address2convert)
-    #elif (CIR.FourBitsAddressInfo).isdigit()==True and len(CIR.FourBitsAddressInfo)<4: #quiere decir que
-    #    print("Carajo")
-    #else:
-    #    MAR.addressBus = int(CIR.FourBitsAddressInfo)
-    #dataBus = RAM.dataBus(MAR.addressBus)
-    #print("addressBus> %i"%MAR.addressBus)
-    #print("dataEnMemoria > %i"%dataBus)
-    #A.storedValue = dataBus
-    #print("Valor en registro A> %i"%A.storedValue)
-
     print("CIR> %s"%CIR.current)
     print(CIR.opcode)
     print(CIR.FourBitsAddressInfo)
@@ -56,19 +43,55 @@ def execution():
     print("MAR addressBus value %i" %MAR.addressBus)
     decoded = CIR.decode()
     operate = CU.InstructionRegister().operations()
+    if decoded == 11 or decoded == 111 or decoded == 1001 or decoded == 1010:
+        if decoded == 11:
+            operate.AND()
+        if decoded == 111:
+            operate.OR()
+        if decoded == 1001:
+            operate.ADD()
+        if decoded == 1010:
+            operate.SUB()
     if decoded == 0000:
         operate.output()
     if decoded == 1:
         print(MAR.addressBus)
-        operate.LD_A()
+        print("Data Bus Value> %i" %RAM.dataBusValue)
+        operate.LD_A(A, RAM.dataBusValue)
+        print("Registro A> %i" %A.storedValue)
+    if decoded == 10:
+        print(MAR.addressBus)
+        operate.LD_B(B, RAM.dataBusValue)
+        print("Data Bus Value> %i" %RAM.dataBusValue)
+        print("Registro B> %i" %A.storedValue)
+    if decoded == 100:
+        operate.ILD_A(A, MAR.addressBus)
+        print("addressBus Value> %i" %MAR.addressBus)
+        print("Registro A> %i" %A.storedValue)
+    if decoded == 1000:
+        operate.ILD_B(B, MAR.addressBus)
+    if decoded == 101:
+        print("Memoria Ram antes> %a" %RAM.data)
+        operate.STR_A(RAM, MAR.addressBus, A)
+        print("Memoria Ram despues> %a" %RAM.data)
+    if decoded == 110:
+        print("Memoria Ram antes> %a" %RAM.data)
+        operate.STR_B(RAM, MAR.addressBus, B)
+        print("Memoria Ram despues> %a" %RAM.data)
+    if decoded == 1111:
+        operate.HALT(do)
     print(decoded)
     PC.update()
+    #do.interrupt = 1
     
 
 
 for i in range(0, (programa.n),1) :
+    print('\n')
     fetching()
     decoding()
     execution()
-    if i < programa.n-1:
+    if i < programa.n-1: #aqui iba i en lugar de PC.value
         CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value])
+    print('\n')
+

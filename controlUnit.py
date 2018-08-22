@@ -1,5 +1,9 @@
 from alu import ALU
 class CU:
+    class Interruptions:
+        _value = 0
+        def __init__(self):
+            self.interrupt = self._value
     class programa:
         # Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
         _readMe = open("program.code", 'r').read()
@@ -20,8 +24,8 @@ class CU:
         def __init__(self):
             self.value = self._value
 
-        def update(self):
-            self.value += 1
+        def update(self, jmp=1):
+            self.value += jmp
             
     class InstructionRegister:
         class currentInstructionRegister:
@@ -50,31 +54,29 @@ class CU:
                 if opcode == 'LD_A' or opcode == '0001':
                     return 1 #('Funciono LD_A')
                     ## DO OUTPUT
-                elif opcode == 'LD_B' or opcode == '0010':
+                if opcode == 'LD_B' or opcode == '0010':
                     return 10 #('Funciono LD_B')
                     ## DO LD_A
-                elif opcode == 'AND' or opcode == '0011':
+                if opcode == 'AND' or opcode == '0011':
                     return  11 #('Funciono AND')
                     ## DO LD_B
-                elif opcode == 'ILD_A' or opcode == '0100':
+                if opcode == 'ILD_A' or opcode == '0100':
                     return 100 #('Funciono ILD_A')
                     ## DO AND
-                elif opcode == 'ILD_B' or opcode == '1000':
+                if opcode == 'ILD_B' or opcode == '1000':
                     return 1000 #('Funciono ILD_B')
-                elif opcode == 'STR_A' or opcode == '0101':
+                if opcode == 'STR_A' or opcode == '0101':
                     return 101 #('Funciono STR_A')
                     ## DO ILD_A
-                elif opcode == 'STR_B' or opcode == '0110':
+                if opcode == 'STR_B' or opcode == '0110':
                     return 110 #('Funciono STR_B')
                     ## DO STR_A
-                elif opcode == 'STR_C' or opcode == '0111':
+                if opcode == 'STR_C' or opcode == '0111':
                     return 111 #('Funciono STR_C')
                     ## DO STR_B
-<<<<<<< HEAD
-                elif opcode == 'ADD' or opcode == '1001':
+                if opcode == 'ADD' or opcode == '1001':
                     return 1001 #('Funciono ADD')
-=======
-                elif opcode == 'ADD' or opcode == '1001':                    
+                if opcode == 'ADD' or opcode == '1001':                    
                     alu = ALU()
                     high = self.FourBitsAddressInfo[2] + self.FourBitsAddressInfo[3]
                     low = self.FourBitsAddressInfo[0] + self.FourBitsAddressInfo[1]
@@ -82,30 +84,50 @@ class CU:
                     print(low)
                     print(alu.sum(high, low))
                     return ('Funciono ADD')
->>>>>>> 4ee94e4f56720959d54143c9db8bba3ba836fd0f
                     ## DO ILD_B
-                elif opcode == 'SUB' or opcode == '1010':
+                if opcode == 'SUB' or opcode == '1010':
                     return 1010 #('Funciono SUB')
                     ## DO ADD
-                elif opcode == 'JMP' or opcode == '1011':
+                if opcode == 'JMP' or opcode == '1011':
                     return 1011 #('Funciono JMP')
                     ## DO SUB
-                elif opcode == 'JMP_N' or opcode == '1100':
+                if opcode == 'JMP_N' or opcode == '1100':
                     return 1100 #('Funciono JMP_N')
                     ## DO SUB
-                elif opcode == 'ROR?' or opcode == '1101':
+                if opcode == 'ROR?' or opcode == '1101':
                     ## DO JMP
                     return 1101 #("Funciono ROR?")
-                elif opcode == 'ROL?' or opcode == '1110':
+                if opcode == 'ROL?' or opcode == '1110':
                     return 1110 #('Funciono ROL?')
-                elif opcode == 'HLT' or opcode == '1111':
+                if opcode == 'HLT' or opcode == '1111':
                     return 1111 #('Funciono HALT')
         class operations:
+            def AND(self):
+                pass
+            def OR(self):
+                pass
+            def ADD(self):
+                pass
+            def SUB(self):
+                pass
             def output(self):
                 print("Hello OUTPUT")
-            def LD_A(self):
+            def LD_A(self, registerA, dataBusVal): #en IC le paso el objeto "A" y ese es el param de registerA, luego en dataBusVal le paso el valor del atributo de RAM "dataBusValue"
+                registerA.storedValue = dataBusVal
                 print('Loaded A')
-
+            def LD_B(self, registerB, dataBusVal):
+                registerB.storedValue = dataBusVal
+                print("Loaded B")
+            def ILD_A(self, registerA, store2registerA):
+                registerA.storedValue = store2registerA
+            def ILD_B(self, registerB, store2registerB):
+                registerB.storedValue = store2registerB
+            def STR_A(self, ram, dirAtRam2write, registerA):
+                ram.data[dirAtRam2write] = registerA.storedValue
+            def STR_B(self, ram, dirAtRam2write, registerB):
+                ram.data[dirAtRam2write] = registerB.storedValue
+            def HALT(self, doI):
+                doI.interrupt = 1
 if __name__ == '__main__': 
     def prueba1():
         PC = CU.programCounter()
