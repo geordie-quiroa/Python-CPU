@@ -1,5 +1,6 @@
 ld_a 5
 0010 0101
+hlt
 ild_a 0101
 ild_B 8
 Str_A 2
