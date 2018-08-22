@@ -101,12 +101,14 @@ class CU:
                     return 1110 #('Funciono ROL?')
                 if opcode == 'HLT' or opcode == '1111':
                     return 1111 #('Funciono HALT')
+        class ArithmeticLogicUnit:
+            pass
         class operations:
             def AND(self):
                 pass
             def OR(self):
                 pass
-            def ADD(self):
+            def ADD(self, registerA, registerB):
                 pass
             def SUB(self):
                 pass
@@ -126,6 +128,8 @@ class CU:
                 ram.data[dirAtRam2write] = registerA.storedValue
             def STR_B(self, ram, dirAtRam2write, registerB):
                 ram.data[dirAtRam2write] = registerB.storedValue
+            def JMP2instruction(self, PCobject, jump2instruction):
+                PCobject.update(jump2instruction)
             def HALT(self, doI):
                 doI.interrupt = 1
 if __name__ == '__main__': 
