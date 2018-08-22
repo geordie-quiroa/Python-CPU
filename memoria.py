@@ -8,6 +8,7 @@ class ram(data):  # inherita clase data
         for address in range(0, self.totalData, 1):
             _addresses.append(address) 
         self.addresses = _addresses
+        self.dataBusValue = 0
         
     def dataBus(self, ramDir):
         return self.data[ramDir]

@@ -1,6 +1,6 @@
 #Memory Address Registry --> MAR
 class MemoryAddressRegistry: #MAR recibe el PC del CU para ir a buscar esa data al address en ram que envio el PC, tambien almacena la siguiente linea a ejecutar para que lo use el CU
-    def __init__(self, PC=0): #en PC pasas el atributo que tiene el PC de tu CU, PC.Counter o algo asi
+    def __init__(self, PC): #en PC pasas el atributo que tiene el PC de tu CU, PC.Counter o algo asi
         self.addressBus = PC
         self.nextDataAddress2fetch = PC+1
 #class addressBus(MAR): #inherita MAR, con el fin de retornar solo la direccion de ram para esa instruccion, que puede ser cambiada por el CU sin afectar MAR como tal
@@ -11,7 +11,7 @@ class MemoryAddressRegistry: #MAR recibe el PC del CU para ir a buscar esa data 
 
 if __name__=='__main__':
     PC = 2
-    MAR = MemoryAddressRegistry() # puede ir vacio, lo tomaria como PC = 0
+    MAR = MemoryAddressRegistry(PC) # puede ir vacio, lo tomaria como PC = 0
     MAR.addressBus = PC
     print(MAR.addressBus)
     MAR.addressBus = 8
