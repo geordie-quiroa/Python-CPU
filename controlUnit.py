@@ -81,9 +81,8 @@ class CU:
                     high = self.FourBitsAddressInfo[2] + self.FourBitsAddressInfo[3]
                     low = self.FourBitsAddressInfo[0] + self.FourBitsAddressInfo[1]
                     print(high)
-                    print(low)
-                    print(alu.sum(high, low))
-                    return ('Funciono ADD')
+                    print(low)          
+                    alu.sum(high, low)
                     ## DO ILD_B
                 if opcode == 'SUB' or opcode == '1010':
                     return 1010 #('Funciono SUB')

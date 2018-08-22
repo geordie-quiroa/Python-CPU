@@ -2,6 +2,16 @@ from memoria import ram
 from registros import registers
 from controlUnit import CU
 from MemoryAddressRegistry import MemoryAddressRegistry
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
+
+
+@app.route('/')
+def hello(test=0):
+    return render_template('index.html', test=test)
+
+
 
 programa = CU.programa() #ya construi el objeto con las instrucciones de programa
 PC = CU.programCounter() # ya construi el objeto PC
