@@ -1,3 +1,4 @@
+from alu import ALU
 class CU:
     class programa:
         # Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
@@ -69,8 +70,19 @@ class CU:
                 elif opcode == 'STR_C' or opcode == '0111':
                     return 111 #('Funciono STR_C')
                     ## DO STR_B
+<<<<<<< HEAD
                 elif opcode == 'ADD' or opcode == '1001':
                     return 1001 #('Funciono ADD')
+=======
+                elif opcode == 'ADD' or opcode == '1001':                    
+                    alu = ALU()
+                    high = self.FourBitsAddressInfo[2] + self.FourBitsAddressInfo[3]
+                    low = self.FourBitsAddressInfo[0] + self.FourBitsAddressInfo[1]
+                    print(high)
+                    print(low)
+                    print(alu.sum(high, low))
+                    return ('Funciono ADD')
+>>>>>>> 4ee94e4f56720959d54143c9db8bba3ba836fd0f
                     ## DO ILD_B
                 elif opcode == 'SUB' or opcode == '1010':
                     return 1010 #('Funciono SUB')
