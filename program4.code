@@ -1,8 +1,8 @@
-Output
 Ld_A 14
 Ld_B 12
-1001 1110
-AND
-ILD_A
-STR_A
-STR_B
+JMP 2
+hlt
+1000 0101
+STR_B 7
+ILD_A 15
+hlt
