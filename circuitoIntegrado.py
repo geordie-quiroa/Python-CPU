@@ -131,7 +131,7 @@ def circuitoIntegrado():
                 operandL = D
                 
             print(operandH.storedValue, operandL.storedValue)
-            operandL = ALU.ADD(operandH, operandL)
+            ALU.ADD(operandH, operandL)
 
         if decoded == 1111:            
             print("TERMINATED")

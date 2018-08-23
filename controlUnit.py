@@ -105,7 +105,7 @@ class CU:
                     return 1111 #('Funciono HALT')
         class ArithmeticLogicUnit:
             def ADD(self, register1, register2):
-                register2.storedValue = register1.storedValue + register2.storedValue
+                register1.storedValue = register1.storedValue + register2.storedValue
                 return register2
 
             def AND(self):
