@@ -18,8 +18,8 @@ do = CU.Interruptions()
 def fetching():
     print('-----Fetching--------')
     print("CIR> %s"%CIR.current)
-    print(CIR.opcode)
-    print(CIR.FourBitsAddressInfo)
+    print("OPCODE> %s"%CIR.opcode)
+    print("OPERAND> %s"%CIR.FourBitsAddressInfo)
 
 def decoding():
     print('---- Decoding -------')
@@ -31,7 +31,7 @@ def decoding():
             MAR.addressBus = CIR.convertBinary2DecAddress(_binaryAddress2convert) #el MAR.addressBus ya esta en decimal para ir a buscar a memoria
 
         if len(CIR.FourBitsAddressInfo) < 4: #quiere decir que el addressInfo ya esta en decimal, 
-            if CIR.FourBitsAddressInfo != 'HLT':
+            if CIR.FourBitsAddressInfo != 'HLT' and (CIR.FourBitsAddressInfo).isdigit():
                 MAR.addressBus = int(CIR.FourBitsAddressInfo)
             else:
                 MAR.addressBus = 0000
@@ -47,17 +47,20 @@ def execution():
     #print("MAR addressBus value %i" %MAR.addressBus)
     decoded = CIR.decode()
     operate = CU.InstructionRegister().operations()
+    ALU = CU.InstructionRegister.ArithmeticLogicUnit()
     if decoded == 11 or decoded == 111 or decoded == 1001 or decoded == 1010:
         if decoded == 11:
-            operate.AND()
+            ALU.AND()
         if decoded == 111:
             operate.OR()
         if decoded == 1001:
-            operate.ADD()
+            if (CIR.First2bits == "A") and (CIR.Last2bits == "B"):
+                ALU.ADD(A, B, D)
+                print ("Resultado Suma> %i"%D.storedValue)
         if decoded == 1010:
             operate.SUB()
     if decoded == 0000:
-        operate.output()
+        print(operate.output(B))
     if decoded == 1:
         print("MAR addresBus Value> %i" %MAR.addressBus)
         print("Data Bus Value> %i" %RAM.dataBusValue)
@@ -67,7 +70,7 @@ def execution():
         print(MAR.addressBus)
         operate.LD_B(B, RAM.dataBusValue)
         print("Data Bus Value> %i" %RAM.dataBusValue)
-        print("Registro B> %i" %A.storedValue)
+        print("Registro B> %i" %B.storedValue)
     if decoded == 100:
         operate.ILD_A(A, MAR.addressBus)
         print("addressBus Value> %i" %MAR.addressBus)
@@ -75,19 +78,15 @@ def execution():
     if decoded == 1000:
         operate.ILD_B(B, MAR.addressBus)
     if decoded == 101:
-        print("Memoria Ram antes> %a" %RAM.data)
         operate.STR_A(RAM, MAR.addressBus, A)
-        print("Memoria Ram despues> %a" %RAM.data)
     if decoded == 110:
-        print("Memoria Ram antes> %a" %RAM.data)
         operate.STR_B(RAM, MAR.addressBus, B)
-        print("Memoria Ram despues> %a" %RAM.data)
     if decoded == 1011:
         line2jump = MAR.addressBus
         operate.JMP2instruction(PC, line2jump)
     if decoded == 1111:
         operate.HALT(do)
-    print(decoded)
+        print("Terminate")
     PC.update()
     #do.interrupt = 1
     
@@ -95,14 +94,21 @@ def execution():
 
 for i in range(0, (programa.n),1) :
     if PC.value <= programa.n and do.interrupt !=1:
-        print('\n')
         fetching()
         decoding()
         if PC.value <= programa.n:
             execution()
+            if do.interrupt!=1:
+                print('''--- CPU Status Summary --- ''')
+                print('Value at Register A> %i' %A.storedValue)
+                print('Value at Register B> %i' %B.storedValue)
+                print('Value at Register C> %i' %C.storedValue)
+                print('Value at Register D> %i' %D.storedValue)
+                print('Instruction executed: %s'%CIR.current)
+                print("RAM values> %a"%RAM.data)
+                print("\n")
         if PC.value < programa.n-1:
             CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value])
-        print('\n')
     else:
         i+=1
 
