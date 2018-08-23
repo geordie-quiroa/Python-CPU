@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Python CPU</title>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body class="crt">
     <div class="title">=========== PYTHON CPU ===========</div>
@@ -52,9 +52,7 @@
         <div>------------- OUTPUT -------------</div>
         <ul class="output">
             <!-- AQUI INSERTAR EL OUTPUT COMO UN NUEVO LI -->
-            {{%for i in x%}}
-                <li>{{i}}</li>
-            {{end for}}
+            <li> {{ test }}</li>
             <li class="pointer">█</li>
         </ul>
     </div>
