@@ -69,17 +69,6 @@ def circuitoIntegrado():
         decoded = CIR.decode()
         operate = CU.InstructionRegister().operations()        
         ALU = CU.InstructionRegister.ArithmeticLogicUnit()
-        if decoded == 11 or decoded == 111 or decoded == 1001 or decoded == 1010:
-            if decoded == 11:
-                ALU.AND()
-            if decoded == 111:
-                operate.OR()
-            if decoded == 1001:
-                if (CIR.First2bits == "A") and (CIR.Last2bits == "B"):
-                    ALU.ADD(A, B, D)
-                    print ("Resultado Suma> %i"%D.storedValue)
-            if decoded == 1010:
-                operate.SUB()
         if decoded == 0:
             D.storedValue = RAM.dataBus(int(CIR.FourBitsAddressInfo))
             print(D.storedValue)
@@ -132,10 +121,58 @@ def circuitoIntegrado():
                 
             print(operandH.storedValue, operandL.storedValue)
             ALU.ADD(operandH, operandL)
+        
+        if decoded == 1010:
+            operandH = CIR.FourBitsAddressInfo[2]
+            operandL = CIR.FourBitsAddressInfo[0]
+            if operandH == "A":
+                operandH = A
+            if operandH == "B":
+                operandH = B
+            if operandH == "C":
+                operandH = C
+            if operandH == "D":
+                operandH = D
+            
+            if operandL == "A":
+                operandL = A
+            if operandL == "B":
+                operandL = B
+            if operandL == "C":
+                operandL = C
+            if operandL == "D":
+                operandL = D
+                
+            print(operandH.storedValue, operandL.storedValue)
+            ALU.SUB(operandH, operandL)
 
         if decoded == 1111:            
             print("TERMINATED")
             output.append("TERMINATED")
+
+        if decoded == 11:
+            operandH = CIR.FourBitsAddressInfo[2]            
+            if operandH == "A":
+                operandH = A
+            if operandH == "B":
+                operandH = B
+            if operandH == "C":
+                operandH = C
+            if operandH == "D":
+                operandH = D
+            ALU.AND(operandH)
+
+        if decoded == 111:
+            operandH = CIR.FourBitsAddressInfo[2]            
+            if operandH == "A":
+                operandH = A
+            if operandH == "B":
+                operandH = B
+            if operandH == "C":
+                operandH = C
+            if operandH == "D":
+                operandH = D
+            ALU.OR(operandH)            
         PC.update()
         #do.interrupt = 1
         

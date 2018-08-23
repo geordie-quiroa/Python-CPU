@@ -106,14 +106,27 @@ class CU:
         class ArithmeticLogicUnit:
             def ADD(self, register1, register2):
                 register1.storedValue = register1.storedValue + register2.storedValue
-                return register2
+                return register1
 
-            def AND(self):
-                pass
-            def OR(self):
-                pass
-            def SUB(self):
-                pass
+            def AND(self, register1, register2):
+                register1.storedValue = register1.storedValue & register2.storedValue
+                return register1
+
+            def OR(self, register1, register2):
+                register1.storedValue = register1.storedValue | register2.storedValue
+                return register1
+
+            def SUB(self, register1, register2):
+                register1.storedValue = register1.storedValue - register2.storedValue
+                return register1
+            
+            def SHR(self, register):
+                register = register >> 1
+                return register                
+
+            def SHL(self, register):
+                register = register << 1
+                return register
         class operations:            
             def output(self, B):
                 return B.storedValue
