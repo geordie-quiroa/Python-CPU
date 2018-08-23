@@ -26,7 +26,7 @@ Y listo, ya termino de instalar todos los prerequisitos para el proyecto.
 ### Correr
 El programa se puede iniciar con el siguiente comando
 ```
-python circuitoIntegrado.py
+flask run
 ```
 
 ## Hecho con
