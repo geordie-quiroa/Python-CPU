@@ -78,6 +78,17 @@ class CU:
                     ## DO STR_B
                 if opcode == 'ADD' or opcode == '1001':
                     return 1001 #('Funciono ADD')
+<<<<<<< HEAD
+                if opcode == 'ADD' or opcode == '1001':                    
+                    alu = ALU()
+                    high = self.FourBitsAddressInfo[2] + self.FourBitsAddressInfo[3]
+                    low = self.FourBitsAddressInfo[0] + self.FourBitsAddressInfo[1]
+                    print(high)
+                    print(low)          
+                    alu.sum(high, low)
+                    ## DO ILD_B
+=======
+>>>>>>> 3a2f1f79e504c9c5e8ffcddc663235d4d8cb2111
                 if opcode == 'SUB' or opcode == '1010':
                     return 1010 #('Funciono SUB')
                     ## DO ADD

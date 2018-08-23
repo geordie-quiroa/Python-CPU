@@ -77,8 +77,10 @@ def execution():
         print("Registro A> %i" %A.storedValue)
     if decoded == 1000:
         operate.ILD_B(B, MAR.addressBus)
+        print("Registro B > %i" %B.storedValue)
     if decoded == 101:
         operate.STR_A(RAM, MAR.addressBus, A)
+        print("Se guardo registro A en posicion RAM> %i" %MAR.addressBus)
     if decoded == 110:
         operate.STR_B(RAM, MAR.addressBus, B)
     if decoded == 1011:
@@ -90,8 +92,6 @@ def execution():
     PC.update()
     #do.interrupt = 1
     
-
-
 for i in range(0, (programa.n),1) :
     if PC.value <= programa.n and do.interrupt !=1:
         fetching()
@@ -100,6 +100,7 @@ for i in range(0, (programa.n),1) :
             execution()
         if PC.value < programa.n-1:
             CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value])
+        print('\n')
     else:
         i+=1
 

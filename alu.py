@@ -14,7 +14,7 @@ class ALU:
         # Si la comparacion no es igual retorna 0
         # Sirve para poder hacer un JMP_N, compara la parte alta y baja de un registro
         result = 1
-        if high == low:
+        if high != low:
             result = 0
         return result
 
