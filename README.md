@@ -1,5 +1,5 @@
 # PythonCPU [![Build Status](https://travis-ci.com/fabrv/Python-CPU.svg?token=JMzgWZCPd3EysxhcDNG4&branch=master)](https://travis-ci.com/fabrv/Python-CPU)
-Python-CPU es una sencilla simulación de un CPU en Python 3.6 utilizando Continous Integration y pruebas automatizadas.
+Python-CPU es una sencilla simulación de un CPU en Python 3.6 utilizando Continous Integration.
 
 ## Empezando
 Estas instrucciones le permitirán obtener una copia del proyecto en funcionamiento en su máquina local para el desarrollo.
