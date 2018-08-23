@@ -7,19 +7,6 @@ from flask import render_template
 app = Flask(__name__)
 @app.route('/')
 
-programa = CU.programa() #ya construi el objeto con las instrucciones de programa
-PC = CU.programCounter() # ya construi el objeto PC
- #almacena el PC.value que puede cambiar durante la ejecucion sin alterar el atributo del PC como tal.
-RAM = ram() # ya construi el objeto ram con sus respectivos datos 
-#PC.update() #si aumenta el PC.value en uno
-CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value]) #ya tengo el CurrentInstructionRegister con el byte a ejecutar en string
-MAR = MemoryAddressRegistry(0) #antes estaba PC.value
-A = registers() #cree el registro A 
-B = registers()
-C = registers()
-D = registers() #este va a ser el Output
-do = CU.Interruptions() 
-
 def circuitoIntegrado():
     programa = CU.programa() #ya construi el objeto con las instrucciones de programa
     PC = CU.programCounter() # ya construi el objeto PC
