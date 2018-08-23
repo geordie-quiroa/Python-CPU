@@ -24,8 +24,9 @@ python3 --version
 Y listo, ya termino de instalar todos los prerequisitos para el proyecto.
 
 ### Correr
-El programa se puede iniciar con el siguiente comando
+El programa se puede iniciar con el siguiente comando desde PowerShell
 ```
+$env:FLASK_APP = "circuitoIntegrado.py"
 flask run
 ```
 
