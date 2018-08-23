@@ -1,0 +1,8 @@
+Output
+Ld_A 14
+Ld_B 12
+1001 1110
+AND
+ILD_A
+STR_A
+STR_B

@@ -40,6 +40,8 @@ class CU:
                     #_addressIndex = _stringAddressInfo.find(' ')
                     #if _addressIndex >0:
                         #print("separar los 4 bits en 2 de 2")
+                    self.First2bits = instructionAtPC[_index+1:_index+2]
+                    self.Last2bits = instructionAtPC[_instructionLength-1:_instructionLength]
                 else:
                     self.opcode = instructionAtPC # ver cual es la direccion de halt aqui va a ir
                     self.FourBitsAddressInfo = instructionAtPC #ver cual es la direccion de HALT, aqui va a ir
@@ -76,6 +78,7 @@ class CU:
                     ## DO STR_B
                 if opcode == 'ADD' or opcode == '1001':
                     return 1001 #('Funciono ADD')
+<<<<<<< HEAD
                 if opcode == 'ADD' or opcode == '1001':                    
                     alu = ALU()
                     high = self.FourBitsAddressInfo[2] + self.FourBitsAddressInfo[3]
@@ -84,6 +87,8 @@ class CU:
                     print(low)          
                     alu.sum(high, low)
                     ## DO ILD_B
+=======
+>>>>>>> 3a2f1f79e504c9c5e8ffcddc663235d4d8cb2111
                 if opcode == 'SUB' or opcode == '1010':
                     return 1010 #('Funciono SUB')
                     ## DO ADD
@@ -101,7 +106,8 @@ class CU:
                 if opcode == 'HLT' or opcode == '1111':
                     return 1111 #('Funciono HALT')
         class ArithmeticLogicUnit:
-            pass
+            def ADD(self, register1, register2, outputReg):
+                outputReg.storedValue = register1.storedValue + register2.storedValue
         class operations:
             def AND(self):
                 pass
@@ -111,8 +117,8 @@ class CU:
                 pass
             def SUB(self):
                 pass
-            def output(self):
-                print("Hello OUTPUT")
+            def output(self, B):
+                return B.storedValue
             def LD_A(self, registerA, dataBusVal): #en IC le paso el objeto "A" y ese es el param de registerA, luego en dataBusVal le paso el valor del atributo de RAM "dataBusValue"
                 registerA.storedValue = dataBusVal
                 print('Loaded A')
