@@ -63,6 +63,7 @@ def circuitoIntegrado():
             if decoded == 1010:
                 operate.SUB()
         if decoded == 0000:
+            
             operate.output()
         if decoded == 1:
             print("MAR addresBus Value> %i" %MAR.addressBus)
@@ -113,4 +114,4 @@ def circuitoIntegrado():
             i+=1
 
 
-    return render_template('index.html', test=1)
+    return render_template('index.html', aR = A.storedValue, bR = B.storedValue, cR = C.storedValue, dR = D.storedValue, pcR = PC.value, iR = CIR.current)
