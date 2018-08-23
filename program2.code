@@ -1,8 +1,6 @@
-Output
-Ld_A 14
-Ld_B 12
-1001 1110
-AND
-ILD_A
-STR_A
-STR_B
+LOAD_A 14
+0010 1111
+ADD B A
+STORE_A 13
+OutPuT 13
+hlt

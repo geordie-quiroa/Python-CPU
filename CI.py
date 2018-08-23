@@ -105,7 +105,8 @@ for i in range(0, (programa.n), 1):
         fetching()
         decoding()
         if PC.value <= programa.n:
-            execution() 
+            execution()
+            print("Registro A> %i" %B.storedValue)
             clock.updateInstructionsExec()
         if PC.value <= programa.n - 1:
             CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value])
