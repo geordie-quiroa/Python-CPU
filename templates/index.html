@@ -52,7 +52,9 @@
         <div>------------- OUTPUT -------------</div>
         <ul class="output">
             <!-- AQUI INSERTAR EL OUTPUT COMO UN NUEVO LI -->
-            <li> {{ test }}</li>
+            {% for line in output %}
+                <li>{{ line }}</li>
+            {% endfor %}
             <li class="pointer">█</li>
         </ul>
     </div>

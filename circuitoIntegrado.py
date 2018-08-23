@@ -19,7 +19,8 @@ def circuitoIntegrado():
     B = registers()
     C = registers()
     D = registers() #este va a ser el Output
-    do = CU.Interruptions() 
+    do = CU.Interruptions()
+    output = []
 
     def fetching():
         print('-----Fetching--------')
@@ -79,7 +80,10 @@ def circuitoIntegrado():
             if decoded == 1010:
                 operate.SUB()
         if decoded == 0000:
-            print(operate.output(B))
+            D.storedValue = RAM.dataBus(int(CIR.FourBitsAddressInfo,2))
+            print(D.storedValue)
+            output.append(D.storedValue)            
+            print("RESULT > %i" %RAM.dataBus(int(CIR.FourBitsAddressInfo,2)))
         if decoded == 1:
             print("MAR addresBus Value> %i" %MAR.addressBus)
             print("Data Bus Value> %i" %RAM.dataBusValue)
@@ -129,4 +133,4 @@ def circuitoIntegrado():
                 CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value])
         else:
             i+=1
-    return render_template('index.html', aR = A.storedValue, bR = B.storedValue, cR = C.storedValue, dR = D.storedValue, pcR = PC.value, iR = CIR.current)
+    return render_template('index.html', aR = A.storedValue, bR = B.storedValue, cR = C.storedValue, dR = D.storedValue, pcR = PC.value, iR = CIR.current, output= output)
