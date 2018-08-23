@@ -1,5 +1,14 @@
 from alu import ALU
+from datetime import datetime
 class CU:
+    class clock:
+        _cyclesExecuted = 0
+        def __init__(self):
+            self.cycles = self._cyclesExecuted
+        def calculateSpeed(self, timeStarted):
+            return (self.cycles/(datetime.now()-timeStarted))
+        def updateInstructionsExec(self):
+            self._cyclesExecuted +=1
     class Interruptions:
         _value = 0
         def __init__(self):
