@@ -6,8 +6,6 @@ from flask import Flask
 from flask import render_template
 app = Flask(__name__)
 
-<<<<<<< HEAD
-=======
 programa = CU.programa() #ya construi el objeto con las instrucciones de programa
 PC = CU.programCounter() # ya construi el objeto PC
  #almacena el PC.value que puede cambiar durante la ejecucion sin alterar el atributo del PC como tal.
@@ -25,7 +23,6 @@ def fetching():
     print("CIR> %s"%CIR.current)
     print("OPCODE> %s"%CIR.opcode)
     print("OPERAND> %s"%CIR.FourBitsAddressInfo)
->>>>>>> 3a2f1f79e504c9c5e8ffcddc663235d4d8cb2111
 
 @app.route('/')
 def circuitoIntegrado():
@@ -47,28 +44,6 @@ def circuitoIntegrado():
         print(CIR.opcode)
         print(CIR.FourBitsAddressInfo)
 
-<<<<<<< HEAD
-    def decoding():
-        print('---- Decoding -------')
-        if CIR.decode() == 11 or CIR.decode() == 111 or CIR.decode() == 1001 or CIR.decode() == 1010:
-            print("utiliza 2 bits por address")
-        else:
-            if len(CIR.FourBitsAddressInfo) == 4: #si es = a 4; es una dir de memoria binaria, tengo aqui la convierto a decimales para poder indexar en memoria
-                _binaryAddress2convert = CIR.FourBitsAddressInfo
-                MAR.addressBus = CIR.convertBinary2DecAddress(_binaryAddress2convert) #el MAR.addressBus ya esta en decimal para ir a buscar a memoria
-
-            if len(CIR.FourBitsAddressInfo) < 4: #quiere decir que el addressInfo ya esta en decimal, 
-                if CIR.FourBitsAddressInfo != 'HLT':
-                    MAR.addressBus = int(CIR.FourBitsAddressInfo)
-                else:
-                    MAR.addressBus = 0000
-            RAM.dataBusValue = RAM.dataBus(MAR.addressBus)
-            print("Opcode> %s"%CIR.opcode)
-            if CIR.decode() != 1111:
-                print("Instruccion con ese opcode> %s"%CIR.decode())
-                print("MAR addressBus> %i" %MAR.addressBus)
-                print("RAM dataBus> %i" %RAM.dataBusValue)
-=======
         if len(CIR.FourBitsAddressInfo) < 4: #quiere decir que el addressInfo ya esta en decimal, 
             if CIR.FourBitsAddressInfo != 'HLT' and (CIR.FourBitsAddressInfo).isdigit():
                 MAR.addressBus = int(CIR.FourBitsAddressInfo)
@@ -129,7 +104,6 @@ def execution():
     PC.update()
     #do.interrupt = 1
     
->>>>>>> 3a2f1f79e504c9c5e8ffcddc663235d4d8cb2111
 
     def execution():
         print('--- Execution ----')
@@ -182,8 +156,6 @@ def execution():
         #do.interrupt = 1
         
 
-<<<<<<< HEAD
-=======
 for i in range(0, (programa.n),1) :
     if PC.value <= programa.n and do.interrupt !=1:
         fetching()
@@ -203,7 +175,6 @@ for i in range(0, (programa.n),1) :
             CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value])
     else:
         i+=1
->>>>>>> 3a2f1f79e504c9c5e8ffcddc663235d4d8cb2111
 
     for i in range(0, (programa.n),1) :
         if PC.value <= programa.n and do.interrupt !=1:
