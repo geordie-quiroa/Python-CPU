@@ -1,3 +1,4 @@
+import math
 from memoria import ram
 from registros import registers
 from controlUnit import CU
@@ -66,7 +67,7 @@ def circuitoIntegrado():
         print('--- Execution ----')
         #print("MAR addressBus value %i" %MAR.addressBus)
         decoded = CIR.decode()
-        operate = CU.InstructionRegister().operations()
+        operate = CU.InstructionRegister().operations()        
         ALU = CU.InstructionRegister.ArithmeticLogicUnit()
         if decoded == 11 or decoded == 111 or decoded == 1001 or decoded == 1010:
             if decoded == 11:
@@ -79,11 +80,11 @@ def circuitoIntegrado():
                     print ("Resultado Suma> %i"%D.storedValue)
             if decoded == 1010:
                 operate.SUB()
-        if decoded == 0000:
-            D.storedValue = RAM.dataBus(int(CIR.FourBitsAddressInfo,2))
+        if decoded == 0:
+            D.storedValue = RAM.dataBus(int(CIR.FourBitsAddressInfo))
             print(D.storedValue)
             output.append(D.storedValue)            
-            print("RESULT > %i" %RAM.dataBus(int(CIR.FourBitsAddressInfo,2)))
+            print("RESULT > %i" %RAM.dataBus(int(CIR.FourBitsAddressInfo)))
         if decoded == 1:
             print("MAR addresBus Value> %i" %MAR.addressBus)
             print("Data Bus Value> %i" %RAM.dataBusValue)
@@ -107,6 +108,31 @@ def circuitoIntegrado():
         if decoded == 1011:
             line2jump = MAR.addressBus
             operate.JMP2instruction(PC, line2jump)
+
+        if decoded == 1001:
+            operandH = CIR.FourBitsAddressInfo[2]
+            operandL = CIR.FourBitsAddressInfo[0]
+            if operandH == "A":
+                operandH = A
+            if operandH == "B":
+                operandH = B
+            if operandH == "C":
+                operandH = C
+            if operandH == "D":
+                operandH = D
+            
+            if operandL == "A":
+                operandL = A
+            if operandL == "B":
+                operandL = B
+            if operandL == "C":
+                operandL = C
+            if operandL == "D":
+                operandL = D
+                
+            print(operandH.storedValue, operandL.storedValue)
+            operandL = ALU.ADD(operandH, operandL)
+
         if decoded == 1111:            
             print("TERMINATED")
             output.append("TERMINATED")

@@ -15,7 +15,7 @@ class CU:
             self.interrupt = self._value
     class programa:
         # Cada funcion debe estar "autocontenida" para poder hacer pruebas autmatizadas.
-        _readMe = open("program.code", 'r').read()
+        _readMe = open("program2.code", 'r').read()
         _readProgram = _readMe.split('\n')  # crea un array
         _programInstructions = [] # cambie _parseData por _data
         for instruction in _readProgram:
@@ -104,17 +104,17 @@ class CU:
                 if opcode == 'HLT' or opcode == '1111':
                     return 1111 #('Funciono HALT')
         class ArithmeticLogicUnit:
-            def ADD(self, register1, register2, outputReg):
-                outputReg.storedValue = register1.storedValue + register2.storedValue
-        class operations:
+            def ADD(self, register1, register2):
+                register2.storedValue = register1.storedValue + register2.storedValue
+                return register2
+
             def AND(self):
                 pass
             def OR(self):
                 pass
-            def ADD(self, registerA, registerB):
-                pass
             def SUB(self):
                 pass
+        class operations:            
             def output(self, B):
                 return B.storedValue
             def LD_A(self, registerA, dataBusVal): #en IC le paso el objeto "A" y ese es el param de registerA, luego en dataBusVal le paso el valor del atributo de RAM "dataBusValue"
