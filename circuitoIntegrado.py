@@ -107,9 +107,9 @@ def circuitoIntegrado():
         if decoded == 1011:
             line2jump = MAR.addressBus
             operate.JMP2instruction(PC, line2jump)
-        if decoded == 1111:
-            operate.HALT(do)
-            print("Terminate")
+        if decoded == 1111:            
+            print("TERMINATED")
+            output.append("TERMINATED")
         PC.update()
         #do.interrupt = 1
         
