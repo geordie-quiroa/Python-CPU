@@ -98,15 +98,6 @@ for i in range(0, (programa.n),1) :
         decoding()
         if PC.value <= programa.n:
             execution()
-            if do.interrupt!=1:
-                print('''--- CPU Status Summary --- ''')
-                print('Value at Register A> %i' %A.storedValue)
-                print('Value at Register B> %i' %B.storedValue)
-                print('Value at Register C> %i' %C.storedValue)
-                print('Value at Register D> %i' %D.storedValue)
-                print('Instruction executed: %s'%CIR.current)
-                print("RAM values> %a"%RAM.data)
-                print("\n")
         if PC.value < programa.n-1:
             CIR = CU.InstructionRegister.currentInstructionRegister(programa.instrucciones[PC.value])
     else:
